@@ -10,6 +10,12 @@ def solve_quadratic(a, b, c):
     assert x >= 0
     return x
 
+def mps_to_mph(x):
+    return x * 3600 / 1609.34
+
+def m_to_ft(x):
+    return x * 3.28084
+
 # description:
   # no-turn and no-lane-change intersection with traffic light
 # assume:
@@ -42,13 +48,13 @@ def throughput_basic(speed_lim, t_green, yellow_mult, car_len, stop_spacing, go_
         return math.ceil(solve_quadratic(a, b, c))
 
 def main():
-    speed_limit = 11            # m/s
-    green_time = 30             # s
-    yellow_time_multiple = 0.1  # s^2/m
-    car_length = 5              # m
-    stopped_car_spacing = 2.5   # m
-    go_threshold = 6            # m
-    acceleration = 2            # m/s^2
+    speed_limit = 11                # m/s
+    green_time = 30                 # s
+    yellow_time_multiple = 0.25     # s^2/m
+    car_length = 5                  # m
+    stopped_car_spacing = 2.5       # m
+    go_threshold = 6                # m
+    acceleration = 2                # m/s^2
 
     # advanced parameters
     left_turn_probability = 0.0 # probability of a left turn
@@ -60,13 +66,13 @@ Stoplight situation:
     no-turn and no-lane-change intersection with traffic light
     
 Given conditions:
-    Speed limit: {speed_limit}
-    Time green: {green_time}
-    Time yellow: {yellow_time_multiple * speed_limit}
-    Car lengths: {car_length}
-    Stopped spacing: {stopped_car_spacing}
-    Space threshold to accelerate: {go_threshold}
-    Acceleration: {acceleration}
+    Speed limit ----------- {mps_to_mph(speed_limit)} mph
+    Time green ------------ {green_time} s
+    Time yellow ----------- {yellow_time_multiple * speed_limit} s
+    Car lengths ----------- {m_to_ft(car_length)} ft
+    Stopped spacing ------- {m_to_ft(stopped_car_spacing)} ft
+    Space to accelerate --- {m_to_ft(go_threshold)} ft
+    Acceleration ---------- {acceleration} m/s^2
     
 Throughput: {throughput_basic(speed_limit, green_time, yellow_time_multiple, car_length, stopped_car_spacing, go_threshold, acceleration)}
 """)
