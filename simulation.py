@@ -22,9 +22,9 @@ def m_to_ft(x):
   # infinite cars in queue
   # "through" := car breaking the stop line's plane
   # no variance (all drivers act perfectly average)
-def throughput_basic(speed_lim, t_green, yellow_mult, car_len, stop_spacing, go_threshold, acc):
+def throughput_basic(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_threshold, acc):
     # time
-    t_total = t_green + speed_lim * yellow_mult
+    t_total = t_green + t_yellow
     t_to_speed_limit = speed_lim / acc
     t_acc = min(t_to_speed_limit, t_total)
     t_limit = t_total - t_acc
@@ -74,7 +74,7 @@ Given conditions:
     Space to accelerate --- {m_to_ft(go_threshold)} ft
     Acceleration ---------- {acceleration} m/s^2
     
-Throughput: {throughput_basic(speed_limit, green_time, yellow_time_multiple, car_length, stopped_car_spacing, go_threshold, acceleration)}
+Throughput: {throughput_basic(speed_limit, green_time, speed_limit * yellow_time_multiple, car_length, stopped_car_spacing, go_threshold, acceleration)}
 """)
 
 if __name__=="__main__":
