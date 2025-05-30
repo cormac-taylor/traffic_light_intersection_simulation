@@ -72,34 +72,34 @@ def throughput_basic(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_thr
     #     return math.ceil(num / den)
 
 def main():
-    speed_limit = 11                # m/s
-    green_time = 30                 # s
-    yellow_time_multiple = 0.25     # s^2/m
-    car_length = 5                  # m
-    stopped_car_spacing = 2.5       # m
-    go_threshold = 6                # m
-    acceleration = 2                # m/s^2
+  speed_limit = 11                # m/s
+  green_time = 30                 # s
+  yellow_time_multiple = 0.25     # s^2/m
+  car_length = 5                  # m
+  stopped_car_spacing = 2.5       # m
+  go_threshold = 6                # m
+  acceleration = 2                # m/s^2
 
-    # advanced parameters
-    left_turn_probability = 0.0 # probability of a left turn
-    reaction_time = 0.0         # time to begin acceleration
-    speed_tolerance = 5
+  # advanced parameters
+  left_turn_probability = 0.0 # probability of a left turn
+  reaction_time = 0.0         # time to begin acceleration
+  speed_tolerance = 5
 
-    print(f"""
+  print(f"""
 Stoplight situation:
-    no-turn and no-lane-change intersection with traffic light
+  no-turn and no-lane-change intersection with traffic light
     
 Given conditions:
-    Speed limit ----------- {util.mps_to_mph(speed_limit)} mph
-    Time green ------------ {green_time} s
-    Time yellow ----------- {yellow_time_multiple * speed_limit} s
-    Car lengths ----------- {util.m_to_ft(car_length)} ft
-    Stopped spacing ------- {util.m_to_ft(stopped_car_spacing)} ft
-    Space to accelerate --- {util.m_to_ft(go_threshold)} ft
-    Acceleration ---------- {acceleration} m/s^2
+  Speed limit ----------- {util.mps_to_mph(speed_limit)} mph
+  Time green ------------ {green_time} s
+  Time yellow ----------- {yellow_time_multiple * speed_limit} s
+  Car lengths ----------- {util.m_to_ft(car_length)} ft
+  Stopped spacing ------- {util.m_to_ft(stopped_car_spacing)} ft
+  Space to accelerate --- {util.m_to_ft(go_threshold)} ft
+  Acceleration ---------- {acceleration} m/s^2
     
 Throughput: {throughput_basic(speed_limit, green_time, speed_limit * yellow_time_multiple, car_length, stopped_car_spacing, go_threshold, acceleration)}
 """)
 
 if __name__=="__main__":
-    main()
+  main()
