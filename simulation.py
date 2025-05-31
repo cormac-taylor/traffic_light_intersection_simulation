@@ -3,11 +3,12 @@ import util
 
 # description:
   # no-turn and no-lane-change intersection with traffic light
+  # 3 states: stopped, accelerating, and at speed limit  
 # assume:
   # infinite cars in queue
+  # instant reaction time
   # "through" := car being on both sides of the stop line's plane
   # no variance (all drivers act perfectly average)
-  # instant reaction time
 def throughput_basic(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_threshold, acc):
   # time
   t_total = t_green + t_yellow
@@ -71,11 +72,12 @@ def throughput_basic(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_thr
 
 # description:
   # no-turn and no-lane-change intersection with traffic light
+  # 3 states: stopped, accelerating, and at speed limit  
 # assume:
   # infinite cars in queue
   # "through" := car being on both sides of the stop line's plane
   # no variance (all drivers act perfectly average)
-def throughput(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_threshold, acc, t_react):
+def throughput_reaction(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_threshold, acc, t_react):
   # time
   t_total = t_green + t_yellow - t_react
   t_to_speed_limit = speed_lim / acc
@@ -132,7 +134,7 @@ Given conditions:
   Acceleration ---------- {acceleration} m/s^2
   Reaction time --------- {reaction_time} s
 
-Throughput: {throughput(speed_limit, green_time, speed_limit * yellow_time_multiple, car_length, stopped_car_spacing, go_threshold, acceleration, reaction_time)}
+Throughput: {throughput_reaction(speed_limit, green_time, speed_limit * yellow_time_multiple, car_length, stopped_car_spacing, go_threshold, acceleration, reaction_time)}
 """)
 
 if __name__=="__main__":
