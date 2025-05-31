@@ -75,10 +75,9 @@ def throughput_basic(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_thr
   # infinite cars in queue
   # "through" := car being on both sides of the stop line's plane
   # no variance (all drivers act perfectly average)
-def throughput(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_threshold, acc, reaction_time):
-  # to do
+def throughput(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_threshold, acc, t_react):
   # time
-  t_total = t_green + t_yellow
+  t_total = t_green + t_yellow - t_react
   t_to_speed_limit = speed_lim / acc
   t_acc = min(t_to_speed_limit, t_total)
   t_limit = t_total - t_acc
@@ -104,7 +103,7 @@ def throughput(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_threshold
       # i * d_car > d_acc > d_to_go_threshold
       # this is reasonable under realistic considerations
     num = t_total + (d_acc / speed_lim) - t_acc
-    den = math.sqrt(2 * d_to_go_threshold / acc) + d_car / speed_lim
+    den = max(math.sqrt(2 * d_to_go_threshold / acc), t_react) + d_car / speed_lim
     return math.ceil(num / den)
 
 
