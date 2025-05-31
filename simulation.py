@@ -105,6 +105,8 @@ def throughput_reaction(speed_lim, t_green, t_yellow, car_len, stop_spacing, go_
       # i * d_car > d_acc > d_to_go_threshold
       # this is reasonable under realistic considerations
     num = t_total + (d_acc / speed_lim) - t_acc
+    # this implementaion of reaction time applies a large penalty to small changes and none to large changes
+    # this feels fair to me
     den = max(math.sqrt(2 * d_to_go_threshold / acc), t_react) + d_car / speed_lim
     return math.ceil(num / den)
 
